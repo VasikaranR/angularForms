@@ -1,0 +1,29 @@
+<div class="container mt-1">
+    <h2>List of Employees</h2>
+    <table class="table"> 
+            <thead>
+                <th>S.No</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Mobile</th>
+                <th>Domain</th>
+                <th>Action</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let i of userList">
+                    <td>{{i.id}}</td>
+                    <td>{{i.name}}</td>
+                    <td>{{i.email}}</td>
+                    <td>{{i.phone}}</td>
+                    <td>{{i.topic}}</td>
+    
+                    <td>
+                        <button class="btn btn-info"  [routerLink]="['/update-add',i.id]" >Edit</button>
+                        <!-- <button class="btn btn-info"><a routerLink="/add/{{i.id}}">Edit</a></button> -->
+                        <button class="btn btn-danger mx-3"  (click)="remove(i.id)">Remove</button>
+                    </td>
+                </tr>  
+            </tbody>      
+    </table>
+    <a [routerLink]="['/add']" class="btn btn-primary">Add New</a>
+</div>
