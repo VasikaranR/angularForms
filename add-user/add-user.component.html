@@ -1,0 +1,40 @@
+<div class="container">
+    <h1>Template Driven Forms</h1>
+    <form #userForm="ngForm">
+ 
+    
+
+      <div class="form-group">
+        <label>Name</label>
+        <input type="text" #name="ngModel" class="form-control" [class.is-invalid]="name.invalid && name.touched" name="name" [(ngModel)]="userList.name"required> 
+        <small class="text-danger" [class.d-none]="name.valid || name.untouched">Name is required</small>
+      </div>
+    
+  
+      <div class="form-group">
+        <label>Email</label>
+        <input type="text" #email="ngModel" pattern="^[a-z0-9]{4,13}@[a-z]+\.[a-z\.]{2,6}$" class="form-control" required
+        [class.is-invalid]="email.invalid && email.touched"  name="email" [(ngModel)]="userList.email" >
+        <small class="text-danger" [class.d-none]="email.valid || email.untouched">Email is invalid</small>
+      </div>
+  
+      <div class="form-group">
+        <label>Phone</label>
+        <input type="tel" #phone="ngModel" pattern="^\d{10}$" class="form-control" required
+        [class.is-invalid]="phone.invalid && phone.touched" name="phone" [(ngModel)]="userList.phone"> 
+        <small class="text-danger" [class.d-none]="phone.valid || phone.untouched">Phone number should be 10 digits</small>
+      </div>
+  
+      <div class="form-group">
+        <label>Language</label>
+        <select class="custom-select" [class.is-invalid]="topic.invalid && topic.untouched" required #topic="ngModel" name="topic" [(ngModel)]="userList.topic">
+          <option hidden value="">Select any one</option>
+          <option *ngFor="let topic of topics">{{topic}}</option>
+        </select>
+        <small class="text-danger" [class.d-none]="topic.valid || topic.untouched">Please choose a topic</small>
+      </div><br>
+  
+      <button (click)="backButton()" type="submit" class="btn btn-primary">Back</button>
+      <button [disabled]="userForm.form.invalid" id="submit" (click)="tableDisplay()" type="submit"  class="btn btn-primary" >{{userList.id==0||userList.id==null ?'Submit':'Update'}}</button>
+   </form>
+  </div>
